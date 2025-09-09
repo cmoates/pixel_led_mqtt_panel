@@ -13,21 +13,21 @@
 ////    Settings block    /////
 ///////////////////////////////
   // Wifi settings //
-const char* WIFI_ssid       = "your_wifi_network_name";
-const char* WIFI_password   = "change_me";
+const char* WIFI_ssid     = "your_wifi_network_name";
+const char* WIFI_password = "change_me";
   // OTA updates settings //
-const char* OTA_hostname    = "wLed-panel-01";
-const char* OTA_password    = "change_me";
+const char* OTA_hostname  = "wLed-panel-01";
+const char* OTA_password  = "change_me";
   // MQTT settings //
-const char* mqtt_server = "192.168.1.250";
-const char* mqtt_user = "mqtt_user";
+const char* mqtt_server   = "192.168.1.250";
+const char* mqtt_user     = "mqtt_user";
 const char* mqtt_password = "change_me";
   // MQTT TOPIC PREFIX //
-String TOPIC_PREFIX =  WiFi.macAddress().substring(12);    // This sets  the topic prefix to the last five chars of the MAC, ie: C0:A4
+String TOPIC_PREFIX =  WiFi.macAddress().substring(12);  // This sets  the topic prefix to the last five chars of the MAC, ie: C0:A4
 
   // Parola display settings //
-#define HARDWARE_TYPE MD_MAX72XX::FC16_HW // type of device hardware https://majicdesigns.github.io/MD_MAX72XX/page_hardware.html
-#define MAX_DEVICES  8                    // number of device segments
+#define HARDWARE_TYPE MD_MAX72XX::FC16_HW // Type of device hardware https://majicdesigns.github.io/MD_MAX72XX/page_hardware.html
+#define MAX_DEVICES  8                    // Number of device segments
   // Display pinout //
 #define DATA_PIN  D7                      // WeMos D1 mini GPIO13
 #define CS_PIN    D6                      // WeMos D1 mini GPIO12
@@ -35,16 +35,16 @@ String TOPIC_PREFIX =  WiFi.macAddress().substring(12);    // This sets  the top
 
 MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
-uint8_t scrollSpeed = 35;                   // default frame delay value
+uint8_t scrollSpeed = 35;                   // Default frame delay value
 textEffect_t scrollEffect = PA_SCROLL_DOWN;
 textPosition_t scrollAlign = PA_CENTER;
-uint16_t scrollPause = 2000;                // in milliseconds
+uint16_t scrollPause = 2000;                // In milliseconds
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 char zone0_Message[] = { "wLed" };
-char zone1_Message[] = {"i"};               // logo from custom font
+char zone1_Message[] = {"i"};               // Logo from custom font
 bool zone0_newMessageAvailable = false;
 bool zone1_newMessageAvailable = false;
 
@@ -144,7 +144,7 @@ void loop() {
        }
     }
 
-    if ( i == 2 ) {     // after welcome message set display effects without exit animation
+    if ( i == 2 ) {     // After welcome message set display effects without exit animation
        P.setTextEffect(0, PA_SCROLL_DOWN, PA_NO_EFFECT);
        P.setTextEffect(1, PA_SCROLL_DOWN, PA_NO_EFFECT);  
        i++;
